@@ -2,6 +2,14 @@
 
 Before You install the model BRAMS-6.0  You must have the prerequisites installed. See the document  [BRAMS_6.0_-_INSTALL_PREREQUISITES](http://ftp.cptec.inpe.br/pesquisa/bramsrd/BRAMS-6.0/docs/BRAMS_6.0_-_INSTALL_PREREQUISITES.html) (extension md or html) to see how to install the requisites. **Even You believe the system are ready, please, read the prerequisites document.**
 
+_Minimum system requirement for Brams install and run small test case:_
+
+* Triple core/thread processor for laptop or desktop
+* Hard Disk - 16GB
+* Memory - 8GB
+* Ubuntu or GNU Linux system
+
+
 1. Building PATHS and linking compilers.
    
    In order to compiler the BRAMS code using the compilers and libraries You install in prerequisites make the commands bellow.
@@ -46,23 +54,32 @@ Before You install the model BRAMS-6.0  You must have the prerequisites installe
    warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
    ```
 
-2. ## Configure the model
+2. ## Download and configure the model
+
+   You can download BRAMS in the directory **{INSTALL_DIR}** from GitHub.
+
+   ```bash
+   cd {INSTALL_DIR}
+   wget https://github.com/luflarois/brams/archive/refs/heads/master.zip
+   unzip master.zip
+   ```
    
-   Now You must configure the model passing all libreries You will be use. The **{YOUR_BIN_AREA}** is the folder you want to put the binary and namelists of model. 
+   Now You must configure the model passing all libraries You will be use. The **{YOUR_DIR}/bin** is the folder you want to put the binary and namelists of model. The folder **{YOUR_DIR}** used to put the libraries, includes and executables it contains the repositories: bin/, lib/, include/ and share they are filled by make install command,  see item 3 below. The **{INSTALL_DIR}** is the directory with sources for BRAMS and Prerequisites.
    
    ```bash
-   ./configure --program-prefix=BRAMS_6.0 --prefix={YOUR_BIN_AREA} --enable-jules    --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp={YOUR_DIR}/bin/mpif90    --with-cpcomp={YOUR_DIR}/bin/mpicc --with-fcomp={your_ortran_compiler} --with-ccomp={your_C_compiler} --with-netcdff={YOUR_DIR} --with-netcdfc={YOUR_DIR} --with-wgrib2={YOUR_DIR}
+   cd {INSTALL_DIR}/brams-master/build
+   ./configure --program-prefix=BRAMS_6.0 --prefix={YOUR_DIR} --enable-jules    --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp={YOUR_DIR}/bin/mpif90 --with-cpcomp={YOUR_DIR}/bin/mpicc --with-fcomp={YOUR_DIR}/bin/{your_fortran_compiler} --with-ccomp={YOUR_DIR}/bin/{your_C_compiler} --with-netcdff={YOUR_DIR} --with-netcdfc={YOUR_DIR} --with-wgrib2={YOUR_DIR}
    ```
 
-Bellow an example of use using Gnu, where {YOUR_BIN_AREA} is /home/oscar.
-
-```bash
-./configure --program-prefix=BRAMS_6.0 --prefix=/home/oscar --enable-jules    --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp=/opt/gnu8/bin/mpif90    --with-cpcomp=/opt/gnu8/bin/mpicc --with-fcomp=gfortran --with-ccomp=gcc --with-netcdff=/opt/gnu8 --with-netcdfc=/opt/gnu8 --with-wgrib2=/opt/gnu8
-```
-
-3. ## Make and Make install
+   Bellow an example using Gnu, where {YOUR_DIR} as /opt/apps and {Install_DIR} as /home/oscar.
    
-   The make command will create the brams-6.0 executable. After creation it is necessary to run the make install command so that the basic files for the run are copied to the area set in {YOUR_BIN_AREA}
+   ```bash
+   cd /home/oscar/brams-master/build ./configure --program-prefix=BRAMS_6.0 --prefix=/opt/apps --enable-jules    --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp=/opt/apps/bin/mpif90 --with-cpcomp=/opt/apps/bin/mpicc --with-fcomp=/opt/apps/bin/gfortran --with-ccomp=/opt/apps/bin/gcc --with-netcdff=/opt/apps --with-netcdfc=/opt/apps --with-wgrib2=/opt/apps
+   ```
+
+3. ## Make and make install
+   
+   The make command will create the brams-6.0 executable. After creation it is necessary to run the make install command so that the basic files for the run are copied to the area set in {YOUR_DIR}
    
    ```bash
    make
@@ -104,18 +121,18 @@ Bellow an example of use using Gnu, where {YOUR_BIN_AREA} is /home/oscar.
    i) **MAKESFC** - Creates the surface files using the input files that contain global them and adjusts them to the specifications chosen by the user and arranged in the input namelist. The BRAMS namelist is called RAMSIN.
 
 ```mermaid
-graph TD;
-    NDVI[(ndvi)]-- datafix_model/NDVI_MODIS_GRADS -->BRAMS;
-    TOPOGRAPHY[(topography)]-- datafix_model/topo1km -->BRAMS;
-    SST[(sst)]-- datafix_model/sst_week -->BRAMS;
-    VEGETATION[(vegetation)]-- datafix_model/GL_OGE_INPE -->BRAMS;
-SOIL[(soil)]-- datafix_model/GL_FAO_INPE -->BRAMS
-RAMSIN(RAMSIN_SFC)-.->BRAMS
-style RAMSIN fill:#f9f,stroke:#333,stroke-width:4px
-BRAMS-- dataout/SFC -->TOPFILES[(top_OQ3g)]
-BRAMS-- dataout/SFC -->SFCFILES[(sfc_OQ3g)]
-BRAMS-- dataout/SFC -->SSTFPFX[(sst_OQ3g)]
-BRAMS-- dataout/SFC -->NDVIFPFX[(ndv_OQ3g)]
+   graph TD;
+   NDVI[(ndvi)]-- datafix_model/NDVI_MODIS_GRADS -->BRAMS;
+   TOPOGRAPHY[(topography)]-- datafix_model/topo1km -->BRAMS;
+   SST[(sst)]-- datafix_model/sst_week -->BRAMS;
+   VEGETATION[(vegetation)]-- datafix_model/GL_OGE_INPE -->BRAMS;
+   SOIL[(soil)]-- datafix_model/GL_FAO_INPE -->BRAMS
+   RAMSIN(RAMSIN_SFC)-.->BRAMS
+   style RAMSIN fill:#f9f,stroke:#333,stroke-width:4px
+   BRAMS-- dataout/SFC -->TOPFILES[(top_OQ3g)]
+   BRAMS-- dataout/SFC -->SFCFILES[(sfc_OQ3g)]
+   BRAMS-- dataout/SFC -->SSTFPFX[(sst_OQ3g)]
+   BRAMS-- dataout/SFC -->NDVIFPFX[(ndv_OQ3g)]
 ```
 
    ii) **MAKEVFILE** - From the global data the phase creates the files with the boundary conditions and initial conditions interpolating them to the specifications chosen by the user and arranged in THE RAMSIN.
@@ -124,8 +141,8 @@ BRAMS-- dataout/SFC -->NDVIFPFX[(ndv_OQ3g)]
 graph TD;
     IC[(IC)]-- datain/GRADS -->BRAMS;
     RAMSIN(RAMSIN_VFL)-.->BRAMS
-style RAMSIN fill:#f9f,stroke:#333,stroke-width:4px
-BRAMS-- dataout/IVAR -->IVAR[(ivar)]
+    style RAMSIN fill:#f9f,stroke:#333,stroke-width:4px
+    BRAMS-- dataout/IVAR -->IVAR[(ivar)]
 ```
 
    iii) **INITIAL** - This is the phase of model time integration where prediction data will be produced as specified in RAMSIN. 

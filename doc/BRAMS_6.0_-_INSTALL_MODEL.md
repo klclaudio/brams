@@ -7,7 +7,7 @@ _Minimum system requirement for Brams install and run small test case:_
 * Triple core/thread processor for laptop or desktop
 * Hard Disk - 16GB
 * Memory - 8GB
-* Ubuntu or GNU Linux system
+* GNU Linux system
 
 
 1. Building PATHS and linking compilers.
@@ -21,7 +21,7 @@ _Minimum system requirement for Brams install and run small test case:_
    sudo ln -s /usr/bin/gcc {YOUR_DIR}/bin/gcc
    ```
    
-   > Notice: See the prerequisites document to use the correct {YOUR_DIR} . <mark>Pay attention in correct compiler You are using!!!!</mark>
+   > Notice: See the prerequisites document to use the correct {YOUR_DIR} . <mark> Pay attention in correct compiler You are using, and use full address! </mark>
    
    Please, check if Your path have in first part **{YOUR_DIR}** and if the correct library is in first part of LD_LIBRARY_PATH.  
    
@@ -64,7 +64,7 @@ _Minimum system requirement for Brams install and run small test case:_
    unzip master.zip
    ```
    
-   Now You must configure the model passing all libraries You will be use. The **{YOUR_DIR}/bin** is the folder you want to put the binary and namelists of model. The folder **{YOUR_DIR}** used to put the libraries, includes and executables it contains the repositories: bin/, lib/, include/ and share they are filled by make install command,  see item 3 below. The **{INSTALL_DIR}** is the directory with sources for BRAMS and Prerequisites.
+   Now You must configure the model passing all libraries You will be use. The **{YOUR_DIR}/bin** is the folder you want to put the binary and namelists of model. The folder **{YOUR_DIR}** used to put the libraries, includes and executables it contains the repositories: bin/, lib/, include/ and share they are filled by make install command,  see item 3 below. The **{INSTALL_DIR}** is  BRAMS and Prerequisites source directory.
    
    ```bash
    cd {INSTALL_DIR}/brams-master/build
@@ -76,17 +76,18 @@ _Minimum system requirement for Brams install and run small test case:_
    ```bash
    cd /home/oscar/brams-master/build ./configure --program-prefix=BRAMS_6.0 --prefix=/opt/apps --enable-jules    --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp=/opt/apps/bin/mpif90 --with-cpcomp=/opt/apps/bin/mpicc --with-fcomp=/opt/apps/bin/gfortran --with-ccomp=/opt/apps/bin/gcc --with-netcdff=/opt/apps --with-netcdfc=/opt/apps --with-wgrib2=/opt/apps
    ```
+   > Notice: In the example above compilers have full addresses, it is usefull when You intall Brams with scripts.
 
 3. ## Make and make install
    
-   The make command will create the brams-6.0 executable. After creation it is necessary to run the make install command so that the basic files for the run are copied to the area set in {YOUR_DIR}
+   The make command will create the brams-6.0 executable. After creation it is necessary to run the make install command so that the basic files for the run are copied to the area set in {YOUR_DIR}.
    
    ```bash
    make
    make install
    ```
    
-   The output of BRAMS's model is presented with colors in terminal. If You save the output log (by ">&" use) may be a problem if You want to edit the file. Is possibles to make a filter to extract all special symbols used to color the output. To make the filter just
+   The output of BRAMS's model is presented with colors in terminal. If You save the output log (by ">&" use) may be a problem if You want to edit the file. Is possibles to make a filter to extract all special symbols used to color the output. To make the filter just.
    
    ```bash
    make filter
@@ -105,7 +106,7 @@ _Minimum system requirement for Brams install and run small test case:_
    A series of fixed files and tables are required to run the model. You can get them by downloading the compressed file available in the ftp area. This file has 16GB and may take a while to download. It depends on your network speed. We advise you to check the checksum of the file to make sure that the download has not broken it.
    
    ```bash
-   cd {YOUR_BIN_AREA}
+   cd {YOUR_DIR}/bin
    cd ..
    wget http://ftp.cptec.inpe.br/pesquisa/bramsrd/BRAMS-6.0/test_set_data/MD5SUM
    wget http://ftp.cptec.inpe.br/pesquisa/bramsrd/BRAMS-6.0/test_set_data/brams6.0_test_bin.tar.xz

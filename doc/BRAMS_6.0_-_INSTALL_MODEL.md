@@ -64,7 +64,7 @@ _Minimum system requirement for Brams install and run small test case:_
    unzip master.zip
    ```
    
-   Now you must configure the model passing all libraries you will be use. The **{YOUR_DIR}/bin**  or YOUR_BIN_AREA is the folder you want to put the binary and namelists of model. The folder **{YOUR_DIR}** used to put the libraries, includes and executables it contains the repositories: bin/, lib/, include/ and share they are filled by make install command,  see item 3 below. The **{INSTALL_DIR}** is  BRAMS and prerequisites source directory.
+   Now you must configure the model passing all libraries you will be use. The **{YOUR_DIR}/bin**  or {YOUR_BIN_AREA} is the folder you want to put the binary and namelists of model. The folder **{YOUR_DIR}** used to put the libraries, includes and executables it contains the repositories: bin/, lib/, include/ and share they are filled by make install command,  see item 3 below. The **{INSTALL_DIR}** is  BRAMS and prerequisites source directory.
    
    ```bash
    cd {INSTALL_DIR}/brams-master/build

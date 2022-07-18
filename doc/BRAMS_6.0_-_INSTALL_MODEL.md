@@ -1,6 +1,6 @@
 # BRAMS 6.0 - INSTALL GUIDE
 
-Before You install the model BRAMS-6.0  You must have the prerequisites installed. See the document  [BRAMS_6.0_-_INSTALL_PREREQUISITES](http://ftp.cptec.inpe.br/pesquisa/bramsrd/BRAMS-6.0/docs/BRAMS_6.0_-_INSTALL_PREREQUISITES.html) (extension md or html) to see how to install the requisites. **Even You believe the system are ready, please, read the prerequisites document.**
+Before you install the model BRAMS-6.0  you must have the prerequisites installed. See the document  [BRAMS_6.0_-_INSTALL_PREREQUISITES](http://ftp.cptec.inpe.br/pesquisa/bramsrd/BRAMS-6.0/docs/BRAMS_6.0_-_INSTALL_PREREQUISITES.html) (extension md or html) to see how to install the requisites. **Even you believe the system are ready, please, read the prerequisites document.**
 
 _Minimum system requirement for Brams install and run small test case:_
 
@@ -12,7 +12,7 @@ _Minimum system requirement for Brams install and run small test case:_
 
 ## 1. Building PATHS and linking compilers.
    
-   In order to compiler the BRAMS code using the compilers and libraries You install in prerequisites make the commands bellow.
+   In order to compiler the BRAMS code using the compilers and libraries you install in prerequisites make the commands bellow.
    
    ```bash
    export PATH={YOUR_DIR}/bin:$PATH
@@ -21,11 +21,11 @@ _Minimum system requirement for Brams install and run small test case:_
    sudo ln -s /usr/bin/gcc {YOUR_DIR}/bin/gcc
    ```
    
-   > Notice: See the prerequisites document to use the correct {YOUR_DIR} . <mark> Pay attention in correct compiler You are using, and use full address! </mark>
+   > Notice: See the prerequisites document to use the correct {YOUR_DIR}. <mark> Pay attention in correct compiler you are using, and use full address! </mark>
    
-   Please, check if Your path have in first part **{YOUR_DIR}** and if the correct library is in first part of LD_LIBRARY_PATH.  
+   Please, check if your path have in first part **{YOUR_DIR}** and if the correct library is in first part of LD_LIBRARY_PATH.  
    
-   If You have doubt please, read the prerequisites' doc and use the alias You build (see 9. in prerequisites)
+   If you have doubt please, read the prerequisites' doc and use the alias you build (see 9. in prerequisites)
    
    ```bash
    echo $PATH
@@ -64,7 +64,7 @@ _Minimum system requirement for Brams install and run small test case:_
    unzip master.zip
    ```
    
-   Now You must configure the model passing all libraries You will be use. The **{YOUR_DIR}/bin** is the folder you want to put the binary and namelists of model. The folder **{YOUR_DIR}** used to put the libraries, includes and executables it contains the repositories: bin/, lib/, include/ and share they are filled by make install command,  see item 3 below. The **{INSTALL_DIR}** is  BRAMS and Prerequisites source directory.
+   Now you must configure the model passing all libraries you will be use. The **{YOUR_DIR}/bin**  or YOUR_BIN_AREA is the folder you want to put the binary and namelists of model. The folder **{YOUR_DIR}** used to put the libraries, includes and executables it contains the repositories: bin/, lib/, include/ and share they are filled by make install command,  see item 3 below. The **{INSTALL_DIR}** is  BRAMS and prerequisites source directory.
    
    ```bash
    cd {INSTALL_DIR}/brams-master/build
@@ -76,7 +76,7 @@ _Minimum system requirement for Brams install and run small test case:_
    ```bash
    cd /home/oscar/brams-master/build ./configure --program-prefix=BRAMS_6.0 --prefix=/opt/apps --enable-jules --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp=/opt/apps/bin/mpif90 --with-cpcomp=/opt/apps/bin/mpicc --with-fcomp=/opt/apps/bin/gfortran --with-ccomp=/opt/apps/bin/gcc --with-netcdff=/opt/apps --with-netcdfc=/opt/apps --with-wgrib2=/opt/apps
    ```
-   > Notice: In the example above compilers have full addresses, it is usefull when You intall Brams with scripts.
+   > Notice: In the example above compilers have full addresses, it is usefull when you intall Brams with scripts.
 
 ## 3. Make and make install
    
@@ -87,14 +87,14 @@ _Minimum system requirement for Brams install and run small test case:_
    make install
    ```
    
-   The output of BRAMS's model is presented with colors in terminal. If You save the output log (by ">&" use) may be a problem if You want to edit the file. Is possibles to make a filter to extract all special symbols used to color the output. To make the filter just.
+   The output of BRAMS's model is presented with colors in terminal. If you save the output log (by ">&" use) may be a problem if you want to edit the file. Is possibles to make a filter to extract all special symbols used to color the output. To make the filter just.
    
    ```bash
    make filter
    make install-filter
    ```
    
-   BRAM's models needs a lot of input files. One of them is the Initial and boundary conditions (IC). This files is created from a global model data. Two diferents data input must be created, from NCEP model GFS or from ERA5 data. To create the IC data You must create the PRE-BRAMS utility.
+   BRAM's models needs a lot of input files. One of them is the Initial and boundary conditions (IC). This files is created from a global model data. Two diferents data input must be created, from NCEP model GFS or from ERA5 data. To create the IC data you must create the PRE-BRAMS utility.
    
    ```bash
    make pre-brams
@@ -190,7 +190,7 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
 
 ## 6. How to see the data outputs
    
-   The output of model as You read above is in GRADS file. May be used another formats but we will show how in expert users guide. If You are using Ubuntu Linux or some Debian derivated Linux You can install grads in a simple way, using apt-get command:
+   The output of model as you read above is in GRADS file. May be used another formats but we will show how in expert users guide. If you are using Ubuntu Linux or some Debian derivated Linux you can install grads in a simple way, using apt-get command:
    
    ```bash
    sudo apt-get install grads
@@ -202,14 +202,14 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
 
 ## 7. How to filter the log output
    
-   Supposed You run the model and put the output in a file. See example:
+   Supposed you run the model and put the output in a file. See example:
    
    ```bash
    cd {YOUR_BIN_AREA}
    mpirun -np 3 brams-6.0 -f RAMSIN_INI_MID >& output.txt
    ```
    
-     If You open the file output.txt using a specific editor (for example: vi) You will see all escape characters used for color the output. Example bellow (a small peace of output log read by vi editor):
+     If you open the file output.txt using a specific editor (for example: vi) you will see all escape characters used for color the output. Example bellow (a small peace of output log read by vi editor):
    
    ```
    +--------------+--------------+
@@ -223,13 +223,13 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
    ^[[0m|NSTRATY       |          0001|^[[0m
    ```
    
-   This may appear a little bit confused. To solve the problema You must only run the filter (created in item 3 above) that comes with BRAMS model. Try
+   This may appear a little bit confused. To solve the problema you must only run the filter (created in item 3 above) that comes with BRAMS model. Try
    
    ```bash
    filter output.txt
    ```
    
-   And then, You can see the same file with this look
+   And then, you can see the same file with this look
 
 ```
 +--------------+--------------+
@@ -245,7 +245,7 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
 
 ## 8. How to generate Initial and Boundary conditions (IC) from global data
    
-   The program "pre" created in item 3 above is the program that get data from global input files and converted them to IC for BRAMS. First of all You must edit a namelist file named **pre.nm**l. See the example bellow:
+   The program "pre" created in item 3 above is the program that get data from global input files and converted them to IC for BRAMS. First of all you must edit a namelist file named **pre.nml**. See the example bellow:
    
    ```
    $ARGS_INPUT
@@ -291,13 +291,13 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
    $END
    ```
    
-   The namelist is prepared for test case You have downloaded in item 4.  After You edit it You must run the pre.
+   The namelist is prepared for test case you have downloaded in item 4.  After you edit it you must run the pre.
    
    ```bash
    ./pre
    ```
    
-   A lot of information will be show in screen and some files with IC will be write in the **out_dir** You fill in namelist._
+   A lot of information will be show in screen and some files with IC will be write in the **out_dir** you fill in namelist._
    
    ```
      $ls datain/GRADS -latr

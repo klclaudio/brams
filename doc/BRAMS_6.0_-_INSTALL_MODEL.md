@@ -10,11 +10,11 @@ _Minimum system requirement for Brams install and run small test case:_
 * GNU Linux system
 
 
-1. Building PATHS and linking compilers.
+## 1. Building PATHS and linking compilers.
    
    In order to compiler the BRAMS code using the compilers and libraries You install in prerequisites make the commands bellow.
    
-   ```batch
+   ```bash
    export PATH={YOUR_DIR}/bin:$PATH
    export LD_LIBRARY_PATH={YOUR_DIR}/lib:$LD_LIBRARY_PATH
    sudo ln -s /usr/bin/gfortran {YOUR_DIR}/bin/gfortran
@@ -27,14 +27,14 @@ _Minimum system requirement for Brams install and run small test case:_
    
    If You have doubt please, read the prerequisites' doc and use the alias You build (see 9. in prerequisites)
    
-   ```batch
+   ```bash
    echo $PATH
    echo $LD_LIBRARY_PATH
    ```
    
    Please check if Fortran and C version is the correct. (The example is only for Gnu. You must change if use another compiler) 
    
-   ```
+   ```bash
    gfortran --version
    gcc --version
    ```
@@ -54,7 +54,7 @@ _Minimum system requirement for Brams install and run small test case:_
    warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
    ```
 
-2. ## Download and configure the model
+## 2. Download and configure the model
 
    You can download BRAMS in the directory **{INSTALL_DIR}** from GitHub.
 
@@ -68,17 +68,17 @@ _Minimum system requirement for Brams install and run small test case:_
    
    ```bash
    cd {INSTALL_DIR}/brams-master/build
-   ./configure --program-prefix=BRAMS_6.0 --prefix={YOUR_DIR} --enable-jules    --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp={YOUR_DIR}/bin/mpif90 --with-cpcomp={YOUR_DIR}/bin/mpicc --with-fcomp={YOUR_DIR}/bin/{your_fortran_compiler} --with-ccomp={YOUR_DIR}/bin/{your_C_compiler} --with-netcdff={YOUR_DIR} --with-netcdfc={YOUR_DIR} --with-wgrib2={YOUR_DIR}
+   ./configure --program-prefix=BRAMS_6.0 --prefix={YOUR_DIR} --enable-jules --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp={YOUR_DIR}/bin/mpif90 --with-cpcomp={YOUR_DIR}/bin/mpicc --with-fcomp={YOUR_DIR}/bin/{your_fortran_compiler} --with-ccomp={YOUR_DIR}/bin/{your_C_compiler} --with-netcdff={YOUR_DIR} --with-netcdfc={YOUR_DIR} --with-wgrib2={YOUR_DIR}
    ```
 
    Bellow an example using Gnu, where {YOUR_DIR} as /opt/apps and {Install_DIR} as /home/oscar.
    
    ```bash
-   cd /home/oscar/brams-master/build ./configure --program-prefix=BRAMS_6.0 --prefix=/opt/apps --enable-jules    --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp=/opt/apps/bin/mpif90 --with-cpcomp=/opt/apps/bin/mpicc --with-fcomp=/opt/apps/bin/gfortran --with-ccomp=/opt/apps/bin/gcc --with-netcdff=/opt/apps --with-netcdfc=/opt/apps --with-wgrib2=/opt/apps
+   cd /home/oscar/brams-master/build ./configure --program-prefix=BRAMS_6.0 --prefix=/opt/apps --enable-jules --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp=/opt/apps/bin/mpif90 --with-cpcomp=/opt/apps/bin/mpicc --with-fcomp=/opt/apps/bin/gfortran --with-ccomp=/opt/apps/bin/gcc --with-netcdff=/opt/apps --with-netcdfc=/opt/apps --with-wgrib2=/opt/apps
    ```
    > Notice: In the example above compilers have full addresses, it is usefull when You intall Brams with scripts.
 
-3. ## Make and make install
+## 3. Make and make install
    
    The make command will create the brams-6.0 executable. After creation it is necessary to run the make install command so that the basic files for the run are copied to the area set in {YOUR_DIR}.
    
@@ -101,7 +101,7 @@ _Minimum system requirement for Brams install and run small test case:_
    make install-pre-brams
    ```
 
-4. ## Download tables, fixed files an a test case
+## 4. Download tables, fixed files and a test case
    
    A series of fixed files and tables are required to run the model. You can get them by downloading the compressed file available in the ftp area. This file has 16GB and may take a while to download. It depends on your network speed. We advise you to check the checksum of the file to make sure that the download has not broken it.
    
@@ -115,7 +115,7 @@ _Minimum system requirement for Brams install and run small test case:_
    tar -xvf brams6.0_test_bin.tar.xz
    ```
 
-5. ## Running a small meteorological case
+## 5. Running a small meteorological case
    
    The BRAMS Model is a limited area model and therefore requires input data from outputs from a global model. In the test case presented here, these data are already ready and available. For "expert" cases a new document shows how to get this data and generate it. The BRAMS model runs in 3 distinct phases:
    
@@ -175,7 +175,7 @@ graph TD;
 
    This area is configured in RAMSIN with 60x60x45 points (x,y,z), 20 km of horizontal resolution (surface) and is centered at 22.6S, 45.2W. The test only allows it to run for 24 hours of forecast. After the end of the round, one can verify the behavior of the model by comparing the results that were produced and are in {YOUR_BIN_AREA}/dataout/POST with those stored in the {YOUR_BIN_AREA}/dataout/POST_COMPARE area. To look at the outputs (GRADS/CTL format) you need to know how to use grads software   
 
-> WARNING: Make sure your environment is tuned to use the packages installed in the pre-requirements (PATH and LD_LIBRARY_PATH) To look at the outputs (GRADS/CTL format) you need to know how to use grads software..
+> WARNING: Make sure your environment is tuned to use the packages installed in the pre-requirements (PATH and LD_LIBRARY_PATH). To look at the outputs (GRADS/CTL format) you need to know how to use grads software.
 
 ```bash
 cd {YOUR_BIN_AREA}
@@ -188,19 +188,19 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
 
 ![](http://ftp.cptec.inpe.br/pesquisa/bramsrd/BRAMS-6.0/docs/fig2.png)
 
-6. ## How to see the data outputs
+## 6. How to see the data outputs
    
-   The output of model as You read above is in GRADS file. May be used another formats but we will show how in expert users guide. If You are using Ubuntu Linux or some Debia derivated Linux You can install grads in a simple way, using apt-get command
+   The output of model as You read above is in GRADS file. May be used another formats but we will show how in expert users guide. If You are using Ubuntu Linux or some Debian derivated Linux You can install grads in a simple way, using apt-get command:
    
    ```bash
    sudo apt-get install grads
    ```
    
-   To install grads right from source, please, see the information on site [GrADS Downloads](http://cola.gmu.edu/grads/downloads.php). Pay attention on the necessary libraries explained on [GrADS Supplibs](http://cola.gmu.edu/grads/gadoc/supplibs2.html)
+   To install grads right from source, please, see the information on site [GrADS Downloads](http://cola.gmu.edu/grads/downloads.php). Pay attention on the necessary libraries explained on [GrADS Supplibs](http://cola.gmu.edu/grads/gadoc/supplibs2.html).
    
    To learn about grads we recommend to read the document [Grads Manual from NCEP](https://www.cpc.ncep.noaa.gov/products/international/grads/Advanced_GrADS_Manual.pdf).
 
-7. ## How to filter the log output
+## 7. How to filter the log output
    
    Supposed You run the model and put the output in a file. See example:
    
@@ -209,7 +209,7 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
    mpirun -np 3 brams-6.0 -f RAMSIN_INI_MID >& output.txt
    ```
    
-     If You open the file output.txt using a specific editor (for example: vi) You will see all escape characters used for color the output. Example bellow ( a small peace of output log read by vi editor):
+     If You open the file output.txt using a specific editor (for example: vi) You will see all escape characters used for color the output. Example bellow (a small peace of output log read by vi editor):
    
    ```
    +--------------+--------------+
@@ -243,9 +243,9 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
 |NSTRATY       |          0001|
 ```
 
-8. ## How to generate Initial and Boundary conditions (IC) from global data
+## 8. How to generate Initial and Boundary conditions (IC) from global data
    
-   The program "pre" created in item 3 above is the program that get data from global input files and converted them to IC for BRAMS. First of all You must edit a namelist file named **pre.nm**l. See the example bellow
+   The program "pre" created in item 3 above is the program that get data from global input files and converted them to IC for BRAMS. First of all You must edit a namelist file named **pre.nm**l. See the example bellow:
    
    ```
    $ARGS_INPUT
@@ -314,11 +314,11 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
      rw-r--r--   1   lufla   lufla    297 MiB   Wed Oct  6 10:15:54 2021    IC2020081900.gra
    ```
    
-   This files will be used as inut for BRAMS´Model.
+   This files will be used as input for BRAMS´Model.
 
-9. ## Download GFS Data for model
+## 9. Download GFS Data for model
    
-   The BRAMS comes with a script in bash that get data from GFS from NCEP site. To get the data just run the script passing yera, month, day and output folder
+   The BRAMS comes with a script in bash that get data from GFS from NCEP site. To get the data just run the script passing year, month, day and output folder.
    
    ```bash
    ./getGFS.sh 2021 10 02 ./datain/GFS/
@@ -328,4 +328,4 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
 
 ------
 
-**<mark>Have Fun with BRAMS-6.0!</mark>**
+**<mark>Have fun with BRAMS-6.0!</mark>**

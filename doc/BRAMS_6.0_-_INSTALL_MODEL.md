@@ -119,7 +119,7 @@ _Minimum system requirement for Brams install and run small test case:_
    
    The BRAMS Model is a limited area model and therefore requires input data from outputs from a global model. In the test case presented here, these data are already ready and available. For "expert" cases a new document shows how to get this data and generate it. The BRAMS model runs in 3 distinct phases:
    
-   i) **MAKESFC** - Creates the surface files using the input files that contain global them and adjusts them to the specifications chosen by the user and arranged in the input namelist. The BRAMS namelist is called RAMSIN.
+   **i) MAKESFC** - Creates the surface files using the input files that contain global them and adjusts them to the specifications chosen by the user and arranged in the input namelist. The BRAMS namelist is called RAMSIN.
 
 ```mermaid
    graph TD;
@@ -136,7 +136,7 @@ _Minimum system requirement for Brams install and run small test case:_
    BRAMS-- dataout/SFC -->NDVIFPFX[(ndv_OQ3g)]
 ```
 
-   ii) **MAKEVFILE** - From the global data the phase creates the files with the boundary conditions and initial conditions interpolating them to the specifications chosen by the user and arranged in THE RAMSIN.
+   **ii) MAKEVFILE** - From the global data the phase creates the files with the boundary conditions and initial conditions interpolating them to the specifications chosen by the user and arranged in THE RAMSIN.
 
 ```mermaid
 graph TD;
@@ -146,7 +146,7 @@ graph TD;
     BRAMS-- dataout/IVAR -->IVAR[(ivar)]
 ```
 
-   iii) **INITIAL** - This is the phase of model time integration where prediction data will be produced as specified in RAMSIN. 
+   **iii) INITIAL** - This is the phase of model time integration where prediction data will be produced as specified in RAMSIN. 
 
 ```mermaid
 graph TD;
@@ -209,7 +209,7 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
    mpirun -np 3 brams-6.0 -f RAMSIN_INI_MID >& output.txt
    ```
    
-     If you open the file output.txt using a specific editor (for example: vi) you will see all escape characters used for color the output. Example bellow (a small peace of output log read by vi editor):
+   If you open the file output.txt using a specific editor (for example: vi) you will see all escape characters used for color the output. Example bellow (a small peace of output log read by vi editor):
    
    ```
    +--------------+--------------+
@@ -223,13 +223,13 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
    ^[[0m|NSTRATY       |          0001|^[[0m
    ```
    
-   This may appear a little bit confused. To solve the problema you must only run the filter (created in item 3 above) that comes with BRAMS model. Try
+   This may appear a little bit confused. To solve the problema you must only run the filter (created in item 3 above) that comes with BRAMS model. Try:
    
    ```bash
    filter output.txt
    ```
    
-   And then, you can see the same file with this look
+   And then, you can see the same file with this look:
 
 ```
 +--------------+--------------+
@@ -297,7 +297,7 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
    ./pre
    ```
    
-   A lot of information will be show in screen and some files with IC will be write in the **out_dir** you fill in namelist._
+   A lot of information will be show in screen and some files with IC will be write in the **out_dir** you fill in namelist.
    
    ```
      $ls datain/GRADS -latr

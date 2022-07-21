@@ -39,7 +39,7 @@ If you wanto more information about gfortran, please, see the manual [https://gc
    You will need a folder (**{YOUR\_DIR}**) to put the libraries, includes and executables. You can choose a system folder or a local home folder. If you prefer a system folder remember that commands must be preceeded by a sudo command. Another folder (**{INSTALL\_DIR}**) will be used only for create the sctrucuture and can bem erased after all instalation.
 
 ```bash
-        mkdir {YOU6R_DIR}
+        mkdir {YOUR_DIR}
         mkdir {YOUR_DIR}/bin
         mkdir {YOUR_DIR}/lib
         mkdir {YOUR_DIR}/include
@@ -83,7 +83,6 @@ If you wanto more information about gfortran, please, see the manual [https://gc
    | hdf5           | <https://www.hdfgroup.org/downloads/hdf5/source-code/>   | hdf5-1.12.1.tar.gz
 
 > Notices:  
->
 > 1. The grib2 file has diferent names if you get it from NCEP or if you get it from BRAMS ftp.  
 > 2. The packages may have new version. You can try to install the new versions. Check the web page of each one.
 

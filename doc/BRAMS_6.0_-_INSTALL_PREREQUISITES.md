@@ -273,9 +273,9 @@ To check the version (compiler and options) of mpich:
 ---------------------
 
 ```bash
-        tar -xzvf grib2.tgz
-        cd grib2
-```
+       tar -xzvf grib2.tgz
+       cd grib2 
+ ```
 
    Before compile you must modify the makefile. Edit the makefile, find and change the following variables (use the values as show bellow):
 
@@ -328,9 +328,9 @@ To check the version (compiler and options) of mpich:
    Now add the lines bellow at end of the sequence you found
 
 ```bash
-      ifeq ($(findstring pgcc,$(notdir $(CC))),pgcc)
+       ifeq ($(findstring pgcc,$(notdir $(CC))),pgcc)
          COMP_SYS=nvidia_linux
-      endif
+       endif
 ```
 
    The result must be:
@@ -405,9 +405,9 @@ To check the version (compiler and options) of mpich:
 ```bash
     make CC=<Your_C_compiler> FC=<Your_Fortran_compiler>
     make CC=<Your_C_compiler> FC=<Your_Fortran_compiler> lib  
-    sudo cp wgrib2/wgrib2 {YOUR_DIR}/bin/
-    sudo cp ./lib/*.a {YOUR_DIR}/lib/
-    sudo cp ./lib/*.mod {YOUR_DIR}/include/
+    sudo cp wgrib2/wgrib2 {YOUR_DIR}/bin
+    sudo cp ./lib/*.a {YOUR_DIR}/lib
+    sudo cp ./lib/*.mod {YOUR_DIR}/include
 ```
 
 ## 9.  Creating alias for use

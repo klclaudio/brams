@@ -35,11 +35,11 @@ In most system there are a lot of libraries pre-installed. Yes, if possible use 
 
 If you wanto more information about gfortran, please, see the manual [https://gcc.gnu.org/onlinedocs/gcc-8.4.0/gfortran.pdf](https://gcc.gnu.org/onlinedocs/gcc-8.4.0/gfortran.pdf)
 
-> Notice: If you are installing in a fresh system maybe you need install basic packages from system repository: M4 and  make.
+> Notice:
+>    If you are installing in a fresh system maybe you need install basic packages from system repository: M4 and  make.
 ## 1.  Create the prerequisites folder's structure:
     
-    
-    You will need a folder (**{YOUR\_DIR}**) to put the libraries, includes and executables. You can choose a system folder or a local home folder. If you prefer a system folder remember that commands must be preceeded by a sudo command. Another folder (**{INSTALL\_DIR}**) will be used only for create the sctrucuture and can bem erased after all instalation.
+   You will need a folder (**{YOUR\_DIR}**) to put the libraries, includes and executables. You can choose a system folder or a local home folder. If you prefer a system folder remember that commands must be preceeded by a sudo command. Another folder (**{INSTALL\_DIR}**) will be used only for create the sctrucuture and can bem erased after all instalation.
     
 ```bash
         mkdir {YOU6R_665kllDIR}
@@ -49,7 +49,7 @@ If you wanto more information about gfortran, please, see the manual [https://gc
         mkdir {INSTALL_DIR}
         cd {INSTALL_DIR}
 ```
-    example (using system folder /opt/apps as {YOUR\_DIR} and user home folder /home/oscar as {INSTALL\_DIR}):
+   example (using system folder /opt/apps as {YOUR\_DIR} and user home folder /home/oscar as {INSTALL\_DIR}):
     
 ```bash
         sudo mkdir /opt/apps
@@ -59,14 +59,14 @@ If you wanto more information about gfortran, please, see the manual [https://gc
         mkdir /home/oscar/install
         cd /home/oscar/install
 ```
-> If you will use differents compilers environment we recommend do create the folder with respective names like /opt/nvidia , /opt/intel or /opt/gnu instead /opt/apps as example above
+
+   > If you will use differents compilers environment we recommend do create the folder with respective names like /opt/nvidia, /opt/intel or /opt/gnu instead /opt/apps as example above.
     
-## 2.  Download all necessary prerequisites
+## 2.  Download all necessary prerequisites  
    
+   In order to build full prerequisites a bunch of packages must be downloaded. You can do it in just one command by getting the packages from FTP BRAMS' area or getting every package individually.
     
-    In order to build full prerequisites a bunch of packages must be downloaded. You can do it in just one command by getting the packages from FTP BRAMS' area or getting every package individually.
-    
-    To get just one file (easyest way) with all libraries please, get it as show bellow
+   To get just one file (easyest way) with all libraries please, get it as show bellow:
 
 ```bash
         wget http://ftp.cptec.inpe.br/pesquisa/bramsrd/BRAMS/pre-requisites/prerequisites.tar
@@ -84,15 +84,13 @@ If you wanto more information about gfortran, please, see the manual [https://gc
    | grib2          | https://www.ftp.cpc.ncep.noaa.gov/wd51we/wgrib2/       | wgrib2.tgz                  |
    | hdf5           | https://www.hdfgroup.org/downloads/hdf5/source-code/   | hdf5-1.12.1.tar.gz 
     
-> Notices:
-    > 
-    > 1.  the grib2 file has diferent names if you get it from NCEP or if you get it from BRAMS ftp.
-    >     
-    > 2.  The packages may have new version. You can try to install the new versions. Check the web page of each one.
-    > 
+> Notices:  
+> 1.  The grib2 file has diferent names if you get it from NCEP or if you get it from BRAMS ftp.  
+> 2.  The packages may have new version. You can try to install the new versions. Check the web page of each one.
+    
 ### 3.  Enviroment variables
 
-You need to be sure about where are the libraries, includes and binaries you will build the system. Is necessary to make a symbolic link between the gfortran compiler (version 8) of your system using just "gfortran" in your bin area. The same for gcc. Let's setup the paths:
+   You need to be sure about where are the libraries, includes and binaries you will build the system. Is necessary to make a symbolic link between the gfortran compiler (version 8) of your system using just "gfortran" in your bin area. The same for gcc. Let's setup the paths:
     
 ```bash
         export PATH={YOUR_DIR}/bin:$PATH
@@ -129,13 +127,12 @@ You need to be sure about where are the libraries, includes and binaries you wil
         This is free software; see the source for copying conditions.  There is NO
         warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
     
-> Notice: if you create scripts for install prerequisites maybe you need use full address for compilers and libraries.
+   > Notice: if you create scripts for install prerequisites maybe you need use full address for compilers and libraries.
     
-## 4.  Building the mpich libraries and binaries
-     
+## 4.  Building the mpich libraries and binaries     
     
-    Now you must build all libraries one by one. Let's start with mpich
-    
+   Now you must build all libraries one by one. Let's start with mpich:  
+   
 ```bash
         tar -xzvf mpich-4.0a2.tar.gz 
         cd mpich-4.0a2/
@@ -145,7 +142,7 @@ You need to be sure about where are the libraries, includes and binaries you wil
         cd ..
 ```
 
-    After the install check if the mpich is installed and all the library is present.
+   After the install check if the mpich is installed and all the library is present.
     
 ```bash
     ls {YOUR_DIR}/bin
@@ -257,9 +254,9 @@ To check the version (compiler and options) of mpich:
         sudo make install
         cd ..
 ```
-> Notice: Some system may require install M4 package.
+   > Notice: Some system may require install M4 package.
     
-    If you are using NVIDIA (pgf90/pgcc), to build the NetCDF-fortran, instead the configure above, make the configure using the command lines bellow
+   If you are using NVIDIA (pgf90/pgcc), to build the NetCDF-fortran, instead the configure above, make the configure using the command lines bellow
     
 ```bash
         FFLAGS=-fPIC FCFLAGS=-fPIC CPPFLAGS=-I{YOUR_DIR}/include LDFLAGS=-L{YOUR_DIR}/lib CFLAGS='-O3' FC={YOUR_DIR}/bin/mpif90  CC={YOUR_DIR}/bin/mpicc ./configure --prefix={YOUR_DIR}
@@ -275,7 +272,7 @@ To check the version (compiler and options) of mpich:
     cd grib2
 ```
 
-Before compile you must modify the makefile. Edit the makefile, find and change the following variables (use the values as show bellow):
+   Before compile you must modify the makefile. Edit the makefile, find and change the following variables (use the values as show bellow):
 
     USE_NETCDF3=0
     USE_NETCDF4=0
@@ -300,7 +297,7 @@ Before compile you must modify the makefile. Edit the makefile, find and change 
     USE_OPENJPEG=0
     USE_AEC=0
 
-If you are using **NVIDIA compilers** (pgf90/pgcc) you must change other parts of makefile. Find the commands sequence:
+   If you are using **NVIDIA compilers** (pgf90/pgcc) you must change other parts of makefile. Find the commands sequence:
 
 ```bash
        system=$(shell uname -s)
@@ -322,7 +319,7 @@ If you are using **NVIDIA compilers** (pgf90/pgcc) you must change other parts o
           endif
        endif
 ```
-Now add the lines bellow at end of the sequence you found
+   Now add the lines bellow at end of the sequence you found
 
 ```bash
       ifeq ($(findstring pgcc,$(notdir $(CC))),pgcc)
@@ -330,7 +327,7 @@ Now add the lines bellow at end of the sequence you found
       endif
 ```
 
-The result must be:
+   The result must be:
 
 ```bash
        system=$(shell uname -s)
@@ -356,7 +353,7 @@ The result must be:
        endif
 ```
 
-Find the following sequence:
+   Find the following sequence:
 
 ```bash
     ifeq ($(need_ftn),1)
@@ -372,14 +369,14 @@ Find the following sequence:
     endif
 ```
 
-add the sequence lines after nvfortran section:
+   add the sequence lines after nvfortran section:
 
 ```bash
     else ifeq ($(findstring pgf90,$(notdir $(FC))),pgf90)
        a:=$(shell echo '$Hdefine FORTRAN '\"`${FC} --version | head -n 2 | tail -n 1`\" >> ${CONFIG_H})
 ```
 
-The results must be
+   The results must be
 
 ```bash
     ifeq ($(need_ftn),1)
@@ -397,7 +394,7 @@ The results must be
     endif
 ```
 
-With the modifications you can now compile and install:
+   With the modifications you can now compile and install:
 
 ```bash
     make CC=<Your_C_compiler> FC=<Your_Fortran_compiler>
@@ -409,23 +406,23 @@ With the modifications you can now compile and install:
 
 ## 9.  Creating alias for use
 
-If you compile for a specific compiler, gnu, nvidia or intel (or others) all the libraries and binaries will be build in the compiler. For correct use keep in mind that the PATHs must be pointed to correct binary. For example: you will need the mpirun binary for run the model. We recommend you create some alias to call before the use of each run model. Edit the .bashrc in your home area and put the folowwing lines:
+   If you compile for a specific compiler, gnu, nvidia or intel (or others) all the libraries and binaries will be build in the compiler. For correct use keep in mind that the PATHs must be pointed to correct binary. For example: you will need the mpirun binary for run the model. We recommend you create some alias to call before the use of each run model. Edit the .bashrc in your home area and put the folowwing lines:
 
 ```bash
     alias gnu8='export PATH=/opt/gnu8/bin:$PATH;export LD_LIBRARY_PATH=/opt/gnu8/lib:$LD_LIBRARY_PATH'
     alias nvidia='export PATH=/opt/nvidia/bin:$PATH;export LD_LIBRARY_PATH=/opt/nvidia/lib:$LD_LIBRARY_PATH'
 ```
 
-In the example we create two alias, the first "gnu8" adjust the path to search in /opt/gnu8/bin first and use the libs from /opt/gnu8/lib. At same way the nvidia alias but change the pointer to nvidia area.
+   In the example we create two alias, the first "gnu8" adjust the path to search in /opt/gnu8/bin first and use the libs from /opt/gnu8/lib. At same way the nvidia alias but change the pointer to nvidia area.
 
-After edit and save just type on terminal
+   After edit and save just type on terminal  
 
 ```bash
     source ~/.bashrc 
 ```
 
-and the two alias will be available. Now you can choose the correct before run the model. If you will run the gnu install execute the alias gnu8 on terminal and you will be ready to go.
+   and the two alias will be available. Now you can choose the correct before run the model. If you will run the gnu install execute the alias gnu8 on terminal and you will be ready to go.
 
 * * *
 
-       All the required prerequisites are installed. Have fun!
+   All the required prerequisites are installed. Have fun!

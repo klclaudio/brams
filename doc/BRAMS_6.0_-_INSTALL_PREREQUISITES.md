@@ -24,9 +24,9 @@ Before you install the prerequisites you must have at least one version of gfort
 
 > We recomend to install the **gfortran revision 8.4.0** and **gcc revision 8.4.0**. You can install or use newest version of compilers but is by your own risk. You may try to use INTEL, NVIDIA or other compiler too. The strucuture of setup is almost the same.
 
-> In body of text bellow we will use for your C compiler choice and for your Fortran compiler choice.
+> In body of text below we will use for your C compiler choice and for your Fortran compiler choice.
 
-In most system there are a lot of libraries pre-installed. Yes, if possible use them. But, unfortunatelly, some times a library require other dependencies and the configure may be broken. The instructions bellow in this documents will guide you to install in a particular way. If you got others problems please, contact your system manager.
+In most system there are a lot of libraries pre-installed. Yes, if possible use them. But, unfortunatelly, some times a library require other dependencies and the configure may be broken. The instructions below in this documents will guide you to install in a particular way. If you got others problems please, contact your system manager.
 
 If you wanto more information about gfortran, please, see the manual [https://gcc.gnu.org/onlinedocs/gcc-8.4.0/gfortran.pdf](https://gcc.gnu.org/onlinedocs/gcc-8.4.0/gfortran.pdf)
 
@@ -36,7 +36,7 @@ If you wanto more information about gfortran, please, see the manual [https://gc
 ## 1.  Create the prerequisites folder's structure
 ---------------------
 
-   You will need a folder (**{YOUR\_DIR}**) to put the libraries, includes and executables. You can choose a system folder or a local home folder. If you prefer a system folder remember that commands must be preceeded by a sudo command. Another folder (**{INSTALL\_DIR}**) will be used only for create the sctrucuture and can bem erased after all instalation.
+   You will need a folder (**{YOUR\_DIR}**) to put the libraries, includes and executables. You can choose a system folder or a local home folder. If you prefer a system folder remember that commands must be preceeded by a sudo command. Another folder (**{INSTALL\_DIR}**) will be used only for create the sctrucuture and can be erased after all instalation:
 
 ```bash
         mkdir {YOUR_DIR}
@@ -47,7 +47,7 @@ If you wanto more information about gfortran, please, see the manual [https://gc
         cd {INSTALL_DIR}
 ```
 
-   example (using system folder /opt/apps as {YOUR\_DIR} and user home folder /home/oscar as {INSTALL\_DIR}):
+   In the example below we are using system folder **/opt/apps** as {YOUR\_DIR} and user home folder **/home/oscar** as {INSTALL\_DIR}:
 
 ```bash
         sudo mkdir /opt/apps
@@ -64,7 +64,7 @@ If you wanto more information about gfortran, please, see the manual [https://gc
 ---------------
    In order to build full prerequisites a bunch of packages must be downloaded. You can do it in just one command by getting the packages from FTP BRAMS' area or getting every package individually.
 
-   To get just one file (easyest way) with all libraries please, get it as show bellow:
+   To get just one file (easyest way) with all libraries please, get it as show below:
 
 ```bash
         wget http://ftp.cptec.inpe.br/pesquisa/bramsrd/BRAMS/pre-requisites/prerequisites.tar
@@ -105,7 +105,7 @@ If you wanto more information about gfortran, please, see the manual [https://gc
         echo $LD_LIBRARY_PATH
 ```
 
-  Please check if Fortran and gcc version is the correct or make the same for the other compiler ou will use.
+  Please check if fortran and gcc version is the correct or make the same for the other compiler ou will use.
 
 ```bash
         gfortran --version
@@ -228,7 +228,7 @@ To check the version (compiler and options) of mpich:
         cd ..
 ```
 
-    \--with-openssl If you used **NVIDIA** (pgf90/pgcc) to build mpich, instead the configure above, make the configure using the command lines bellow
+    \--with-openssl If you used **NVIDIA** (pgf90/pgcc) to build mpich, instead the configure above, make the configure using the command lines below
 
 ```bash
         ./configure --prefix={YOUR_DIR} FFLAGS=-fPIC FCFLAGS=-fPIC CC={YOUR_DIR}/bin/mpicc FC={YOUR_DIR}/bin/mpif90 --with-zlib={YOUR_DIR} --with-szlib={YOUR_DIR} --enable-parallel --enable-fortran
@@ -260,7 +260,7 @@ To check the version (compiler and options) of mpich:
 
    > Notice: Some system may require install M4 package.
 
-   If you are using NVIDIA (pgf90/pgcc), to build the NetCDF-fortran, instead the configure above, make the configure using the command lines bellow:
+   If you are using NVIDIA (pgf90/pgcc), to build the NetCDF-fortran, instead the configure above, make the configure using the command lines below:
 
 ```bash
         FFLAGS=-fPIC FCFLAGS=-fPIC CPPFLAGS=-I{YOUR_DIR}/include LDFLAGS=-L{YOUR_DIR}/lib CFLAGS='-O3' FC={YOUR_DIR}/bin/mpif90  CC={YOUR_DIR}/bin/mpicc ./configure --prefix={YOUR_DIR}
@@ -277,7 +277,7 @@ To check the version (compiler and options) of mpich:
        cd grib2 
  ```
 
-   Before compile you must modify the makefile. Edit the makefile, find and change the following variables (use the values as show bellow):
+   Before compile you must modify the makefile. Edit the makefile, find and change the following variables (use the values as show below):
 
     USE_NETCDF3=0
     USE_NETCDF4=0
@@ -325,7 +325,7 @@ To check the version (compiler and options) of mpich:
        endif
 ```
 
-   Now add the lines bellow at end of the sequence you found
+   Now add the lines below at end of the sequence you found
 
 ```bash
        ifeq ($(findstring pgcc,$(notdir $(CC))),pgcc)

@@ -4,7 +4,6 @@ Before you install the model BRAMS-6.0  you must have the prerequisites installe
 
 _Minimum system requirement for Brams install and run small test case:_
 
-* Triple core/thread processor for laptop or desktop
 * Hard Disk - 16GB
 * Memory - 8GB
 * GNU Linux system
@@ -12,13 +11,13 @@ _Minimum system requirement for Brams install and run small test case:_
 
 ## 1. Building PATHS and linking compilers.
    
-   In order to compiler the BRAMS code using the compilers and libraries you install in prerequisites make the commands bellow.
+   In order to compiler the BRAMS code using the compilers and libraries you install in prerequisites make the commands below.
    
    ```bash
    export PATH={YOUR_DIR}/bin:$PATH
    export LD_LIBRARY_PATH={YOUR_DIR}/lib:$LD_LIBRARY_PATH
-   sudo ln -s /usr/bin/gfortran {YOUR_DIR}/bin/gfortran
-   sudo ln -s /usr/bin/gcc {YOUR_DIR}/bin/gcc
+   ln -s /usr/bin/gfortran {YOUR_DIR}/bin/gfortran
+   ln -s /usr/bin/gcc {YOUR_DIR}/bin/gcc
    ```
    
    > Notice: See the prerequisites document to use the correct {YOUR_DIR}. <mark> Pay attention in correct compiler you are using, and use full address! </mark>
@@ -71,12 +70,14 @@ _Minimum system requirement for Brams install and run small test case:_
    ./configure --program-prefix=BRAMS_6.0 --prefix={YOUR_DIR} --enable-jules --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp={YOUR_DIR}/bin/mpif90 --with-cpcomp={YOUR_DIR}/bin/mpicc --with-fcomp={YOUR_DIR}/bin/{your_fortran_compiler} --with-ccomp={YOUR_DIR}/bin/{your_C_compiler} --with-netcdff={YOUR_DIR} --with-netcdfc={YOUR_DIR} --with-wgrib2={YOUR_DIR}
    ```
 
-   Bellow an example using Gnu, where {YOUR_DIR} as /opt/apps and {Install_DIR} as /home/oscar.
+   Below an example using Gnu, where {YOUR_DIR} as /opt/apps and {Install_DIR} as /home/oscar.
    
    ```bash
    cd /home/oscar/brams-master/build ./configure --program-prefix=BRAMS_6.0 --prefix=/opt/apps --enable-jules --with-chem=RELACS_TUV --with-aer=SIMPLE --with-fpcomp=/opt/apps/bin/mpif90 --with-cpcomp=/opt/apps/bin/mpicc --with-fcomp=/opt/apps/bin/gfortran --with-ccomp=/opt/apps/bin/gcc --with-netcdff=/opt/apps --with-netcdfc=/opt/apps --with-wgrib2=/opt/apps
    ```
-   > Notice: In the example above compilers have full addresses, it is usefull when you intall Brams with scripts.
+   > Notice: In the example above compilers have full addresses, it is usefull when you intall Brams with scripts. 
+   >
+   > Notice: BRAMS can work without the GRIB2 (Wgrib2) library configuring without option --with-wgrib2, however some template startup features may be unavailable. For initial tests with pre-generated data this library is not required."
 
 ## 3. Make and make install
    
@@ -117,9 +118,9 @@ _Minimum system requirement for Brams install and run small test case:_
 
 ## 5. Running a small meteorological case
    
-   The BRAMS Model is a limited area model and therefore requires input data from outputs from a global model. In the test case presented here, these data are already ready and available. For "expert" cases a new document shows how to get this data and generate it. The BRAMS model runs in 3 distinct phases:
+   The BRAMS Model is a limited area model and therefore requires input data from outputs from a global model. In the test case presented here, these data are already ready and available. For "expert" cases a new document shows how to get this data and generate it. The BRAMS model runs in 3 distinct phases, using the same namelist named RAMSIN:
    
-   **i) MAKESFC** - Creates the surface files using the input files that contain global them and adjusts them to the specifications chosen by the user and arranged in the input namelist. The BRAMS namelist is called RAMSIN.
+   **i) MAKESFC** - Creates the surface files using the input files that contain global them and adjusts them to the specifications chosen by the user and arranged in the input namelist named RAMSIN.
 
 ```mermaid
    graph TD;
@@ -136,7 +137,7 @@ _Minimum system requirement for Brams install and run small test case:_
    BRAMS-- dataout/SFC -->NDVIFPFX[(ndv_OQ3g)]
 ```
 
-   **ii) MAKEVFILE** - From the global data the phase creates the files with the boundary conditions and initial conditions interpolating them to the specifications chosen by the user and arranged in THE RAMSIN.
+   **ii) MAKEVFILE** - From the global data the phase creates the files with the boundary conditions and initial conditions interpolating them to the specifications chosen by the user and arranged in the RAMSIN.
 
 ```mermaid
 graph TD;
@@ -146,7 +147,7 @@ graph TD;
     BRAMS-- dataout/IVAR -->IVAR[(ivar)]
 ```
 
-   **iii) INITIAL** - This is the phase of model time integration where prediction data will be produced as specified in RAMSIN. 
+   **iii) INITIAL** - This is the phase of model time integration where prediction data will be produced as specified in the RAMSIN. 
 
 ```mermaid
 graph TD;
@@ -209,7 +210,7 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
    mpirun -np 3 brams-6.0 -f RAMSIN_INI_MID >& output.txt
    ```
    
-   If you open the file output.txt using a specific editor (for example: vi) you will see all escape characters used for color the output. Example bellow (a small peace of output log read by vi editor):
+   If you open the file output.txt using a specific editor (for example: vi) you will see all escape characters used for color the output. Example below (a small peace of output log read by vi editor):
    
    ```
    +--------------+--------------+
@@ -245,7 +246,7 @@ A series of logs will be shown on the screen in each of the 3 phases. Be aware o
 
 ## 8. How to generate Initial and Boundary conditions (IC) from global data
    
-   The program "pre" created in item 3 above is the program that get data from global input files and converted them to IC for BRAMS. First of all you must edit a namelist file named **pre.nml**. See the example bellow:
+   The program "pre" created in item 3 above is the program that get data from global input files and converted them to IC for BRAMS. First of all you must edit a namelist file named **pre.nml**. See the example below:
    
    ```
    $ARGS_INPUT

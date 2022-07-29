@@ -168,7 +168,7 @@ graph TD;
     BRAMS-- dataout/ANL -->ANA[(analisys)]
 ```
 
-> WARNING: The first two phases (i and ii) should only be rotated with 1 processor!
+> WARNING: The first two phases (i and ii) should only be executed with 1 processor!
 
    The test case is small enough to run on a laptop or desktop with 3 processors and with 8GB memory. It covers an area as shown in the figure below.
 

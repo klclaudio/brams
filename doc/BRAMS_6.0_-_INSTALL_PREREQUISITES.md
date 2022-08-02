@@ -93,8 +93,8 @@ If you wanto more information about gfortran, please, see the manual [https://gc
 ```bash
         export PATH={YOUR_DIR}/bin:$PATH
         export LD_LIBRARY_PATH={YOUR_DIR}/lib:$LD_LIBRARY_PATH
-        sudo ln -s /usr/bin/gfortran {YOUR_DIR}/bin/gfortran
-        sudo ln -s /usr/bin/gcc {YOUR_DIR}/bin/gcc
+        ln -s /usr/bin/gfortran {YOUR_DIR}/bin/gfortran
+        ln -s /usr/bin/gcc {YOUR_DIR}/bin/gcc
  ```
 
   > If you will use other compiler instead gfortran/gcc make the export for correct compiler.
@@ -137,7 +137,7 @@ The result must be something like. See that in this case we use 8.4.0.
         cd mpich-4.0a2/
         ./configure -disable-fast CC=<Your_C_compiler> FC=<Your_fortran_compiler> CFLAGS=-O2 FFLAGS=-O2 CXXFLAGS=-O2 FCFLAGS=-O2 --prefix={YOUR_DIR} --with-device=ch3
         make
-        sudo make install
+        make install
         cd ..
 ```
 
@@ -191,7 +191,7 @@ To check the version (compiler and options) of mpich:
         cd zlib-1.2.8/
         CC=<Your_C_compiler> ./configure --prefix={YOUR_DIR}
         make
-        sudo make install
+        make install
         cd ..
 ```
 
@@ -202,7 +202,7 @@ To check the version (compiler and options) of mpich:
         cd szip-2.1/
         CC=<Your_C_compiler> ./configure --prefix={YOUR_DIR}
         make
-        sudo make install
+        make install
         cd ..
 ```
 
@@ -224,7 +224,7 @@ To check the version (compiler and options) of mpich:
         cd hdf5-1.12.1/
         ./configure --prefix={YOUR_DIR} CC={YOUR_DIR}/bin/mpicc FC={YOUR_DIR}/bin/mpif90 --with-zlib={YOUR_DIR} --with-szlib={YOUR_DIR} --enable-parallel --enable-fortran
         make
-        sudo make install
+        make install
         cd ..
 ```
 
@@ -233,7 +233,7 @@ To check the version (compiler and options) of mpich:
 ```bash
         ./configure --prefix={YOUR_DIR} FFLAGS=-fPIC FCFLAGS=-fPIC CC={YOUR_DIR}/bin/mpicc FC={YOUR_DIR}/bin/mpif90 --with-zlib={YOUR_DIR} --with-szlib={YOUR_DIR} --enable-parallel --enable-fortran
         make
-        sudo make install
+        make install
         cd ..--with-openssl
 ```
 
@@ -254,7 +254,7 @@ To check the version (compiler and options) of mpich:
         cd netcdf-fortran-4.5.3/
         CPPFLAGS=-I{YOUR_DIR}/include LDFLAGS=-L{YOUR_DIR}/lib CFLAGS='-O3' FC={YOUR_DIR}/bin/mpif90  CC={YOUR_DIR}/bin/mpicc ./configure --prefix={YOUR_DIR}
         make
-        sudo make install
+        make install
         cd ..
 ```
 
@@ -265,7 +265,7 @@ To check the version (compiler and options) of mpich:
 ```bash
         FFLAGS=-fPIC FCFLAGS=-fPIC CPPFLAGS=-I{YOUR_DIR}/include LDFLAGS=-L{YOUR_DIR}/lib CFLAGS='-O3' FC={YOUR_DIR}/bin/mpif90  CC={YOUR_DIR}/bin/mpicc ./configure --prefix={YOUR_DIR}
         make
-        sudo make install
+        make install
         cd ..
 ```
 
@@ -405,9 +405,9 @@ To check the version (compiler and options) of mpich:
 ```bash
     make CC=<Your_C_compiler> FC=<Your_Fortran_compiler>
     make CC=<Your_C_compiler> FC=<Your_Fortran_compiler> lib  
-    sudo cp wgrib2/wgrib2 {YOUR_DIR}/bin
-    sudo cp ./lib/*.a {YOUR_DIR}/lib
-    sudo cp ./lib/*.mod {YOUR_DIR}/include
+    cp wgrib2/wgrib2 {YOUR_DIR}/bin
+    cp ./lib/*.a {YOUR_DIR}/lib
+    cp ./lib/*.mod {YOUR_DIR}/include
 ```
 
 ## 9.  Creating alias for use
